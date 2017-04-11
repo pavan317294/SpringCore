@@ -33,9 +33,9 @@ public void setPointC(Point pointC) {
 }
 
 	public void draw(){
-		System.out.println("pointA:" + getPointA().getX()+","+ getPointA().getY() );
-		System.out.println("pointB:" + getPointB().getX()+","+ getPointB().getY());
-		System.out.println("pointC:" + getPointC().getX()+","+ getPointC().getY());
+		System.out.println("pointA:(" + getPointA().getX()+","+ getPointA().getY()+")" );
+		System.out.println("pointB:(" + getPointB().getX()+","+ getPointB().getY() +")");
+		System.out.println("pointC:(" + getPointC().getX()+","+ getPointC().getY() +")");
 
 	}
 
