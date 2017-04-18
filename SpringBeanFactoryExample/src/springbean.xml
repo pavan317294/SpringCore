@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
-<beans>
-	<bean id = "triangle" class = "com.SpringCore.Triangle" autowire = "byName"> 
-		
+<beans default-init-method = "myInit" default-destroy-method="myCleanup">
+
+ 	<bean id="parenttriangle" class = "com.SpringCore.Triangle" >
+ 		<property name="pointA" ref="pointA"></property>
+ 	</bean>
+ 	
+	<bean id = "triangle1" class = "com.SpringCore.Triangle">  
+	<!-- autowire = "byName" -->
+	 		<property name="pointA" ref="pointA"></property>
+		<property name="pointB" ref="pointB"></property>
+		<property name="pointC" ref="pointC"></property>
 	</bean>
+	
+	<bean id="triangle2" class="com.SpringCore.Triangle" parent="parenttriangle">
+	<property name="pointB" ref="pointB"></property>
+	</bean>
+	
+	<!-- <bean class= "com.SpringCore.DisplayNameBeanPostProcessor"/>
+	<bean class="com.SpringCore.MyBeanFactoryPostProcessor" /> -->
+	<!-- This  bean factory property place holder configurer will look at property file and spring 
+	config xml and substitute the place holders with property values. This is executed before beanfactory 
+	is executed -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value ="pointsconfig.properties" />
+	</bean> 
+	
+	
 	<!-- Setter injection
 	<property name = "type" value="Equilateral"> </property>  -->
 	<!-- Constructor injection
@@ -15,8 +38,8 @@
 			 <constructor-arg index="1" value = "10" /> -->
 			 
 		<bean id = "pointA"	 class ="com.SpringCore.Point">
-			<property name = "x" value = "0"> </property>
-			<property name = "y" value = "0"> </property>
+			<property name = "x" value = "${pointA.pointX}"> </property>
+			<property name = "y" value = "${pointA.pointY}"> </property>
 		</bean>
 		
 		<bean id="pointB" class="com.SpringCore.Point">
@@ -51,7 +74,7 @@
 			<property name = "x" value = "0"></property>
 			<property name ="y" value ="0"></property>
 		</bean> -->
-		<alias name="triangle" alias="triangle-alias"/>
+		<alias name="triangle1" alias="triangle-alias"/>
 		
 		
 </beans>

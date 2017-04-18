@@ -2,10 +2,18 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
 <beans>
-	<bean id = "triangle" class = "com.SpringCore.Triangle"> 
+
+<bean id = "parenttriangle" class = "com.SpringCore.Triangle">
+	<property name ="points">
+	<list>
+	<ref bean="Point0"></ref>
+	</list>
+	</property>
+
+</bean>
+	<bean id = "triangle1" class = "com.SpringCore.Triangle" parent="parenttriangle"> 
 		<property name = "points">
-			<list>
-				<ref bean ="Point0"/>
+			<list merge="true">
 				<ref bean="Point1" />
 				<ref bean="Point2" />
 			</list>
