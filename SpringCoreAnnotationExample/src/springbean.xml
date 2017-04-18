@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd" 
+ xmlns:context="http://www.springframework.org/schema/context">
+		
+	<!-- <bean id = "triangle" class = "com.SpringCore.Triangle">  
+	 	<property name="pointA" ref="pointA"></property>
+		<property name="pointB" ref="pointB"></property>
+		<property name="pointC" ref="pointC"></property>
+	</bean> -->
+		 
+		<bean id = "pointA"	 class ="com.SpringCore.Point">
+			<qualifier value="circleRelated" />
+			<property name = "x" value = "0"> </property>
+			<property name = "y" value = "0"> </property>
+		</bean>
+		
+		 <bean id="pointB" class="com.SpringCore.Point">
+			<property name = "x" value = "20"> </property>
+			<property name = "y" value = "0"> </property>
+		</bean>
+		
+		<bean id="pointC" class="com.SpringCore.Point">
+			<property name = "x" value = "0"> </property>
+			<property name = "y" value = "20"> </property>
+		</bean>
+		
+		<bean id = "circle" class = "com.SpringCore.Circle">
+<!-- This property center is not assigned a value so we will get null pointer in draw() method So in-order to check for all bean dependencies, we need to use @Required at the setter of circle variable -->
+		<!--  <property name="center" ref="pointA"> </property>  -->
+ 		</bean> 
+ 		
+		<!-- <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" /> -->
+		<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
+		<!-- Instead of adding all the above annotation bean post processor you can just add below xml tag -->
+				<context:annotation-config/>
+		
+</beans>

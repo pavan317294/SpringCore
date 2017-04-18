@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans default-init-method = "myInit" default-destroy-method="myCleanup">
+
+ 		
+	<bean id = "triangle" class = "com.SpringCore.Triangle">  
+	<!-- autowire = "byName" -->
+	 		<property name="pointA" ref="pointA"></property>
+		<property name="pointB" ref="pointB"></property>
+		<property name="pointC" ref="pointC"></property>
+	</bean>
+	
+	<bean id = "circle" class = "com.SpringCore.Circle">
+		<property name="center" ref="pointA"> </property>
+	</bean>
+	
+	<!-- Setter injection
+	<property name = "type" value="Equilateral"> </property>  -->
+	<!-- Constructor injection
+			<constructor-arg type="String" value="Equilateral" />
+			<constructor-arg type="java.lang.String" value="10"/>
+			
+			 <constructor-arg index="0" value = "Equilateral" />
+			 <constructor-arg index="1" value = "10" /> -->
+			 
+		<bean id = "pointA"	 class ="com.SpringCore.Point">
+			<property name = "x" value = "0"> </property>
+			<property name = "y" value = "0"> </property>
+		</bean>
+		
+		<bean id="pointB" class="com.SpringCore.Point">
+			<property name = "x" value = "20"> </property>
+			<property name = "y" value = "0"> </property>
+		</bean>
+		
+		<bean id="pointC" class="com.SpringCore.Point">
+			<property name = "x" value = "0"> </property>
+			<property name = "y" value = "20"> </property>
+		</bean>
+		
+		<!-- using inner beans- inner beans doesnt have id and not required. inner beans 
+		are normally used when that particular bean is not used by any other bean -->
+		<!-- <bean id="triangle"  class="com.SpringCore.Triangle">
+			<property name = "pointA" ref = "point0"> </property>
+			<property name ="pointB"> --><!-- 
+				<bean class ="com.SpringCore.Point">
+					<property name = "x" value ="20"> </property>
+					<property name = "y" value = "0"> </property>
+				</bean>
+			</property>
+			<property name ="pointC">
+				<bean id ="point2" class="com.SpringCore.Point">
+					<property name ="x" value="0"></property>
+					<property name ="y" value="20"></property>
+				</bean>
+			</property>
+		</bean>
+		
+		<bean id = "point0" class="com.SpringCore.Point">
+			<property name = "x" value = "0"></property>
+			<property name ="y" value ="0"></property>
+		</bean> -->
+		
+		
+</beans>
